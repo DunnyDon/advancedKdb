@@ -2,7 +2,7 @@ getask:{[s] prices[s]+getmovement[s]};
 getbid:{[s] prices[s]-getmovement[s]};
 getmovement:{[s]rand[0.0001]*prices[s]};
 getprice:{[s] prices[s]+:rand[1 -1]*getmovement[s]; prices[s]};
-h:neg hopen `::5000;
+h:neg hopen `$raze":",.z.x;
 n:2;
 flag:1;
 syms:`AAPL`MSFT`GOOG`IBM`FDL`CSA`ASX;

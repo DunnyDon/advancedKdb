@@ -1,24 +1,8 @@
 #!/bin/bash
-#while getopts component:ports:table:logdir: option
-#do
-#case "${option}"
-#in
-#component) COMP=${OPTARG};;
-#ports) PORT=${OPTARG};;
-#table) TAB=${OPTARG};;
-#f) FORMAT=$OPTARG;;
-#esac
-#done
 
-
-
-#declare -A components
-#components
-
-
-#osascript << END
 newtab () {
 	gnome-terminal --window -t $1 --working-directory $3 -- $2  
+	echo"$3 $2"
 	echo "$1 has started up."
 	sleep 3
  }
@@ -33,7 +17,53 @@ runAll () {
 
 }
 
-runAll "/home/cdonohue/Desktop/advancedKdb"
+#runAll "/home/cdonohue/Desktop/advancedKdb"
 
+for ARGUMENT in "$@"
+do
+
+   KEY=$(echo $ARGUMENT | cut -f1 -d=)
+   VALUE=$(echo $ARGUMENT | cut -f2 -d=)
+
+   case "$KEY" in
+           COMPONENT)              COMPONENT=${VALUE} ;;
+           PORT)                   PORT=${VALUE} ;;
+           CONNECT_TO)             CONNECT_TO=${VALUE};;
+	   WORKING_DIR)		   WORKING_DIR=${VALUE};;
+           TABLES)		   TABLES=${VALUE};;
+           *)
+   esac
+
+
+done
+
+echo "Component = $COMPONENT"
+echo "Port = $PORT"
+echo "TP is on port $CONNECT_TO"
+
+declare -A SCRIPTS=(["rdb"]="tick/r.q" ["tick"]="tick.q" ["cep"]="tick/c.q" ["feed"]="feedHandler.q")
+
+if [ -z "$COMPONENT" ]
+then
+       while true; do
+               read -p "No specific element specifed to start do you wish to start all?? (y/n)" yn
+               case $yn in
+                       [Yy]* ) runAll "/home/cdonohue/Desktop/advancedKdb";;
+                       [Nn]* ) echo "Please enter valid params"; exit;;
+                       *) echo "Please answer yes or no";;
+               esac
+       done
+else
+       if [ -n "$PORT" ] 
+       then 
+	       pPort="-p $PORT" 
+       fi
+
+       if [ -n "$TABLES" ] 
+       then 
+	       pTables="-tables $TABLES" 
+       fi
+       newtab $COMPONENT "q ${SCRIPTS[$COMPONENT]} $CONNECT_TO $pPort $pTables" $WORKING_DIR
+fi
 
 
