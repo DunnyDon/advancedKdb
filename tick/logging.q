@@ -1,5 +1,7 @@
 .z.po:{
- `logInfo insert(.z.u;.z.p;.z.w;"." sv string "i"$0x0 vs .z.a;1b);
+ $[0=count logInfo;
+	[`logInfo insert(.z.u;.z.p;.z.w;.z.a;1b);update ipadr:{"." sv string "i"$0x0 vs x}each ipadr from `logInfo];
+	`logInfo insert(.z.u;.z.p;.z.w;"." sv string "i"$0x0 vs .z.a;1b)];
 
  }
 
@@ -14,5 +16,5 @@ out:{-1 string[.z.p]," ### INFO ### ",x};
 err:{-2 string[.z.p]," ### ERROR ### ",x};
 logtoStdOutAndError:{out[x];err[x]}
 \d .
-logInfo:([]name:`$();time:"t"$();handle:"j"$();ipadr:();active:"b"$())
+logInfo:([]name:`$();time:"p"$();handle:"j"$();ipadr:();active:"b"$())
 memInfo:([]time:();used:();head:();peak:();syms:();symw:())
