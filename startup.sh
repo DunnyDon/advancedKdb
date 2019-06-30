@@ -10,7 +10,7 @@ newtab () {
 
 runAll () {
 	newtab "tick" "q tick.q schema tpLogs/ -p 5000" $1
-	newtab "feed" "q feedHandler.q :5000" $1
+	newtab "feed" "q tick/feedHandler.q :5000" $1
 	newtab "rdbStats"  "q tick/r.q localhost:5000 -tables statsTab -p 5002" $1
 	newtab "Stats"  "q tick/c.q :5000" $1
 	newtab "rdb" "q tick/r.q localhost:5000 -tables bid,quote -p 5003" $1
@@ -41,7 +41,7 @@ echo "Component = $COMPONENT"
 echo "Port = $PORT"
 echo "TP is on port $CONNECT_TO"
 
-declare -A SCRIPTS=(["rdb"]="tick/r.q" ["tick"]="tick.q" ["cep"]="tick/c.q" ["feed"]="feedHandler.q")
+declare -A SCRIPTS=(["rdb"]="tick/r.q" ["tick"]="tick.q" ["cep"]="tick/c.q" ["feed"]="tick/feedHandler.q")
 
 if [ -z "$COMPONENT" ]
 then
