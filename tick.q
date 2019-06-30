@@ -41,8 +41,6 @@ if[system"t";
 if[not system"t";system"t 1000";
  .z.ts:{ts .z.D};
  upd:{[t;x]ts"d"$a:.z.P;
- .ctd.x:x;
- .ctd.t:t;
  if[not -16=type first first x;a:"n"$a;x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
  f:key flip value t;pub[t;$[0>type first x;enlist f!x;flip f!x]];if[l;l enlist (`upd;t;x);i+:1];}];
 

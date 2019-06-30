@@ -10,7 +10,7 @@ newtab () {
 
 runAll () {
 	newtab "tick" "q tick.q schema tpLogs/ -p 5000" $1
-	newtab "feed" "q feedHandler.q " $1
+	newtab "feed" "q feedHandler.q :5000" $1
 	newtab "rdbStats"  "q tick/r.q localhost:5000 -tables statsTab -p 5002" $1
 	newtab "Stats"  "q tick/c.q :5000" $1
 	newtab "rdb" "q tick/r.q localhost:5000 -tables bid,quote -p 5003" $1
@@ -48,7 +48,7 @@ then
        while true; do
                read -p "No specific element specifed to start do you wish to start all?? (y/n)" yn
                case $yn in
-                       [Yy]* ) runAll "/home/cdonohue/Desktop/advancedKdb";;
+                       [Yy]* ) runAll "/home/cdonohue/Desktop/advancedKdb";exit;;
                        [Nn]* ) echo "Please enter valid params"; exit;;
                        *) echo "Please answer yes or no";;
                esac
