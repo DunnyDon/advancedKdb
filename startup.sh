@@ -13,7 +13,7 @@ runAll () {
 	newtab "feed" "q tick/feedHandler.q :5000" $1
 	newtab "rdbStats"  "q tick/r.q localhost:5000 -tables statsTab -p 5002" $1
 	newtab "Stats"  "q tick/c.q :5000" $1
-	newtab "rdb" "q tick/r.q localhost:5000 -tables bid,quote -p 5003" $1
+	newtab "rdb" "q tick/r.q localhost:5000 -tables bid,quote -p 5001" $1
 
 }
 
