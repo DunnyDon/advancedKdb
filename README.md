@@ -1,4 +1,5 @@
 #Advanced kdb+ 
+
 This repo contains a tickerplany set up with supporting scripts and components. The core .u functionality that comes from the kx Github has been modified and changed to allow for extra functionality such as log replay and statisical logging functionality
 
 This repo contains bash scripts which allow users to see what processes are online, to start/stop individual or sets of processes. 
@@ -6,7 +7,7 @@ This repo contains bash scripts which allow users to see what processes are onli
 The tick architecture in this project includes two rdbs and a cep engine which performs realtime aggregation statistics and publishes this back to the tickerplant
 
 There is also a HTML web interface to allow users to query the data in real time
-Futhermore there are 2 feedhandlers which are written in other programming languages and allow for the publishing of data to a TP
+Futhermore there are 2 feedhandlers which are written in other programming languages, Java and Python, and allow for the publishing of data to a TP
 
 #Dependencies
 
@@ -27,6 +28,7 @@ https://pypi.org/project/qPython/
 This repo is available for anyone to take and use
 
 Below you can examples of how to run the individual components of this repo
+
 #USAGE
 
 #Start All
@@ -60,6 +62,15 @@ q eod.q -tpLog ../tpLogs/schema2019.06.24 -date 2019.06.24
 #Python Feedhandler
 
 python csvRead.py 
+
+This run on the assumption that the TP is on port 5000. The file to load in is currently hardcoded. Future work would be to make this more flexible
+
+
+#Java Feedhandler
+
+javac javaFeed.java
+
+java javaFeed
 
 This run on the assumption that the TP is on port 5000. The file to load in is currently hardcoded. Future work would be to make this more flexible
 
