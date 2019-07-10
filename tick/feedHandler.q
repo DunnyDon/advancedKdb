@@ -1,3 +1,6 @@
+/Script to create dummy data and publish to tp
+/Port of Tp specified by user
+
 getask:{[s] prices[s]+getmovement[s]};
 getbid:{[s] prices[s]-getmovement[s]};
 getmovement:{[s]rand[0.0001]*prices[s]};
