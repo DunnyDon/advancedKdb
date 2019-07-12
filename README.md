@@ -37,7 +37,7 @@ Below you can examples of how to run the individual components of this repo
 
 #Start One Component
 
-./startup.sh  COMPONENT=rdb PORT=5001 WORKING_DIR="/home/cdonohue/advancedKdb"
+./startup.sh  COMPONENT=rdb PORT=5001 WORKING_DIR="/home/cdonohue/Desktop/advancedKdb" CONNECT_TO=":5000"
 
 #Stop All
 
