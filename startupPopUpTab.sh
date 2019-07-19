@@ -4,14 +4,20 @@
 #./startup.sh COMPONENT="rdb" PORT="5001" WORKING_DIR="/home/cdonohue/advancedKdb"
 #Working_Dir specified where the scripts are kept
 #Function to run command in a new cmd Tab
+newtab () {
+	gnome-terminal --window -t $1 --working-directory $3 -- $2  
+	echo"$3 $2"
+	echo "$1 has started up."
+	sleep 3
+ }
 
 #Function to run all components with default values
 runAll () {
-	nohup q tick.q schema tpLogs/ -p 5000 > /dev/null 2>&1 &
-	nohup q tick/feedHandler.q :5000 > /dev/null 2>&1 &
-	nohup q tick/r.q localhost:5000 -tables statsTab -p 5002 > /dev/null 2>&1 &
-	nohup q tick/c.q :5000 -p 5003 > /dev/null 2>&1 &
-	nohup q tick/r.q localhost:5000 -tables bid,quote -p 5001 > /dev/null 2>&1 &
+	newtab "tick" "q tick.q schema tpLogs/ -p 5000" $1
+	newtab "feed" "q tick/feedHandler.q :5000" $1
+	newtab "rdbStats"  "q tick/r.q localhost:5000 -tables statsTab -p 5002" $1
+	newtab "Stats"  "q tick/c.q :5000" $1
+	newtab "rdb" "q tick/r.q localhost:5000 -tables bid,quote -p 5001" $1
 
 }
 
@@ -61,7 +67,7 @@ else
        then 
 	       pTables="-tables $TABLES" 
        fi
-        nohup q ${SCRIPTS[$COMPONENT]} $CONNECT_TO $pPort $pTables > /dev/null 2>&1 &
+       newtab $COMPONENT "q ${SCRIPTS[$COMPONENT]} $CONNECT_TO $pPort $pTables" $WORKING_DIR
 fi
 
 
