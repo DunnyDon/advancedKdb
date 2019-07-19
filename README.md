@@ -1,4 +1,4 @@
-#Advanced kdb+ 
+# Advanced kdb+ 
 
 This repo contains a tickerplany set up with supporting scripts and components. The core .u functionality that comes from the kx Github has been modified and changed to allow for extra functionality such as log replay and statisical logging functionality
 
@@ -9,7 +9,7 @@ The tick architecture in this project includes two rdbs and a cep engine which p
 There is also a HTML web interface to allow users to query the data in real time
 Futhermore there are 2 feedhandlers which are written in other programming languages, Java and Python, and allow for the publishing of data to a TP
 
-#Dependencies
+## Dependencies
 
 To run kdb+ you will require a kdb+ license. This is available for non-commercial use accross all major OS and can be downloaded for free at either of the links below
 
@@ -29,44 +29,54 @@ This repo is available for anyone to take and use
 
 Below you can examples of how to run the individual components of this repo
 
-#USAGE
+There are some linux commands built in so there is an assumption that this will be run on a Linux OS
 
-#Start All
+There is a tickPopUp script this utilises gnome-terminal (unix library), it will create new tabs for each component created. Switch this with the tick.q to allow for easier debugging
+
+## USAGE
+
+### Start All
 
 ./startup.sh
 
-#Start One Component
+### Start One Component
 
-./startup.sh  COMPONENT=rdb PORT=5001 WORKING_DIR="/home/cdonohue/Desktop/advancedKdb" CONNECT_TO=":5000"
+./startup.sh  COMPONENT=rdb PORT=5001 CONNECT_TO=":5000"
 
-#Stop All
+### Stop All
 
 ./stop.sh
 
-#Stop one Component
+### Stop one Component
 
 ./stop.sh COMPONENT="tick" PORT="5003"
 
-#Log Replay
+### Test which processes are running
+./checkComponents.sh
+
+### Test for one type of component
+./checkComponent rdb
+
+### Log Replay
 
 q logReplay.q -newLog tpTest -tpLog ../tpLogs/schema2019.06.21 
 
-#CSV read and publish to TP
+### CSV read and publish to TP
 
 q csvRead.q -file bid.csv -table bid -port 5000
 
-#EOD Run
+### EOD Run
 
 q eod.q -tpLog ../tpLogs/schema2019.06.24 -date 2019.06.24
 
-#Python Feedhandler
+### Python Feedhandler
 
 python csvRead.py 
 
 This run on the assumption that the TP is on port 5000. The file to load in is currently hardcoded. Future work would be to make this more flexible
 
 
-#Java Feedhandler
+### Java Feedhandler
 
 javac javaFeed.java
 
