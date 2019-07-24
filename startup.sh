@@ -1,7 +1,7 @@
 #!/bin/bash
 #Script which allows user to start up all components or individual components
 #Usage:
-#./startup.sh COMPONENT="rdb" PORT="5001" WORKING_DIR="/home/cdonohue/advancedKdb"
+#./startup.sh COMPONENT="rdb" PORT="5001" 
 #Working_Dir specified where the scripts are kept
 #Function to run command in a new cmd Tab
 
@@ -45,7 +45,7 @@ then
        while true; do
                read -p "No specific element specifed to start do you wish to start all?? (y/n)" yn
                case $yn in
-                       [Yy]* ) runAll "/home/cdonohue/Desktop/advancedKdb";exit;;
+                       [Yy]* ) runAll ;exit;;
                        [Nn]* ) echo "Please enter valid params"; exit;;
                        *) echo "Please answer yes or no";;
                esac
