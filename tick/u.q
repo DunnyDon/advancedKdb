@@ -1,6 +1,5 @@
 /2008.09.09 .k -> .q
 /2006.05.08 add
-
 \d .u
 init:{w::t!(count t::tables`.)#()}
 

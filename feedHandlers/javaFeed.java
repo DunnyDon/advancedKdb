@@ -27,7 +27,7 @@ public class javaFeed {
 	//read in file
 	BufferedReader reader = new BufferedReader(new FileReader("bid.csv"));
 	//Set format for date that will be read in
-	DateTimeFormatter formatterTest = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm:ss").appendPattern("[.SSSSSSSSS][.SSSSSS][.SSS]").toFormatter();
+	DateTimeFormatter formatterTest = new DateTimeFormatterBuilder().appendPattern("MM/dd/yyyy HH:mm:ss").appendPattern("[.SSSSSSSSS][.SSSSSS][.SSS]").toFormatter();
 	String line = null;
 	reader.readLine();
 	String pattern = "MM/dd/yyyy";
