@@ -1,4 +1,4 @@
-# Advanced kdb+ 
+# Ticker Plant Setup
 
 This repo contains a tickerplany set up with supporting scripts and components. The core .u functionality that comes from the kx Github has been modified and changed to allow for extra functionality such as log replay and statisical logging functionality
 
